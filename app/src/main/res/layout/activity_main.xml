@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Activity.MainActivity"
+        android:orientation="vertical"
+        android:id="@+id/main_layout"
+        android:background="@drawable/gradient_list"
+        android:fitsSystemWindows="true"
+        android:paddingBottom="56dp"
+        android:paddingTop="25dp">
+
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/CustomPopUpStyle"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/main_toolbar_title" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.45"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="56dp"
+            android:paddingRight="56dp">
+
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/cv_avatar_image"
+                android:src="@drawable/work"
+                android:layout_width="52dp"
+                android:elevation="8dp"
+                android:layout_height="52dp"
+                android:layout_marginBottom="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_name"
+                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/default_name"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_reminder_note"
+
+                android:textSize="28sp"
+                android:fontFamily="sans-serif" />
+
+        <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/default_reminder_note"
+                android:id="@+id/tv_reminder_note"
+                android:layout_marginBottom="42dp" app:layout_constraintBottom_toTopOf="@+id/tv_date"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed-light"/>
+
+        <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_date_text"
+                tools:text="@string/default_date_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                android:fontFamily="sans-serif-medium"
+                android:textSize="16sp"
+                android:textStyle="normal"
+        />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+            android:foregroundGravity="center"
+            android:id="@+id/view_pager_categories"
+            android:layout_marginTop="8dp"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:paddingLeft="56dp"
+            android:paddingRight="56dp"
+            android:paddingBottom="16dp"
+            />
+
+</LinearLayout>

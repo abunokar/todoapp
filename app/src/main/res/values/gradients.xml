@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="gradients">
+        <item>@drawable/gradient_one</item>
+        <item>@drawable/gradient_two</item>
+        <item>@drawable/gradient_three</item>
+        <item>@drawable/gradient_four</item>
+        <item>@drawable/gradient_five</item>
+    </array>
+</resources>

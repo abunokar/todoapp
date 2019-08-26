@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">Todo List</string>
+    <string name="default_date_text">Today: SEPTEMBER 12, 2019</string>
+    <string name="default_name">Hello, John Smith!</string>
+    <string name="default_reminder_note">Today you have don\'t have any work to do!</string>
+
+
+    <!--Sign In activity strings-->
+    <string name="login_title">Log in</string>
+    <string name="sign_in_google">Continue with Google</string>
+    <string name="logo_title">ToDoApp</string>
+    <string name="logo_subtitle">Let\'s make it organized!</string>
+    <!--/Sign In activity strings-->
+
+    <!--Main activity strings-->
+        <string name="last_logged_user_id">lastLoggedUserID</string>
+        <string name="my_shared_preferences">MyPrefs</string>
+    <!--/Main activity strings-->
+
+    <string name="list_item_delete_button">Button, which is deleting items from todo-list.</string>
+    <string name="default_subject_list_item">Default subject for list item.</string>
+    <string name="hint_date">Date</string>
+    <string name="hint_subtitle">Subtitle</string>
+    <string name="hint_note_text">Note text</string>
+    <string name="add_category_menu_item">Add category</string>
+    <string name="logout_menu_item">Log out</string>
+    <string name="main_toolbar_title">ToDo</string>
+    <string name="hint_add_category">Category name</string>
+
+    <string name="reminder_note_any">You don\'t have any work to do.</string>
+    <string name="reminder_note_few">You have only few tasks for today.</string>
+    <string name="reminder_note_lot">You have too much to do. Better not plan anything else.</string>
+
+    <string name="transition_category_title">categoryHeader</string>
+    <string name="transition_category_progress_bar">categoryProgressBar</string>
+    <string name="transition_category_percentage">categoryPercentage</string>
+    <string name="transition_category_image">categoryImage</string>
+    <string name="transition_category_taskcount">categoryTaskCount</string>
+
+    <string name="delete">Delete</string>
+
+    <string name="main_activity_toolbar_title">ToDo</string>
+    <string name="category_activity_toolbar_title">Category</string>
+
+    <string name="dialog_create_item_title">Create item</string>
+    <string name="dialog_create_item_message">Do you want to create new item?</string>
+    <string name="dialog_edit_item_title">Edit item</string>
+    <string name="dialog_edit_item_message">Do you want to edit this item?</string>
+    <string name="dialog_empty_fields_message">You have to fill input fields first.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

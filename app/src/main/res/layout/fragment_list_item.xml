@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/item_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="36dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp">
+
+        <ListView
+                android:id="@+id/item_list_fragment_list_view"
+                android:background="#a7a7a7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_create_task"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="4dp"
+            android:src="@drawable/ic_add"
+            app:fabCustomSize="40dp" />
+
+
+</FrameLayout>
