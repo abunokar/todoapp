@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".Activity.CategoryActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -48,16 +49,11 @@
 
             <FrameLayout
                     android:id="@+id/container"
-                    android:background="#e7e7e7"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="0.6">
 
             </FrameLayout>
         </LinearLayout>
-
-
     </ScrollView>
-
-
 </RelativeLayout>

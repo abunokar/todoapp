@@ -53,6 +53,7 @@ class ListItemFragment(name: String) : Fragment(), ListItemAdapter.ReloadList {
         loadListView()
     }
 
+    @Suppress("DEPRECATION")
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         try {
@@ -65,7 +66,12 @@ class ListItemFragment(name: String) : Fragment(), ListItemAdapter.ReloadList {
     fun switchFragments() {
         val itemDetailFragment = ListItemDetailFragment("", categoryName)
         (context as AppCompatActivity).supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+            .setCustomAnimations(
+                R.anim.enter_from_right,
+                R.anim.exit_to_left,
+                R.anim.enter_from_left,
+                R.anim.exit_to_right
+            )
             .replace(R.id.container, itemDetailFragment)
             .addToBackStack(null)
             .commit()
@@ -104,9 +110,21 @@ class ListItemFragment(name: String) : Fragment(), ListItemAdapter.ReloadList {
 
     override fun switchFragmentWithItem(position: Int) {
         val item = items.get(position)
-        val itemDetailFragment = ListItemDetailFragment(item.id,item.checked,item.subject,item.date,item.text, categoryName)
+        val itemDetailFragment = ListItemDetailFragment(
+            item.id,
+            item.checked,
+            item.subject,
+            item.date,
+            item.text,
+            categoryName
+        )
         (context as AppCompatActivity).supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+            .setCustomAnimations(
+                R.anim.enter_from_right,
+                R.anim.exit_to_left,
+                R.anim.enter_from_left,
+                R.anim.exit_to_right
+            )
             .replace(R.id.container, itemDetailFragment)
             .addToBackStack(null)
             .commit()

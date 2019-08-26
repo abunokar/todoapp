@@ -4,6 +4,7 @@ import com.example.todolist.Model.CategoryItem
 import com.example.todolist.Model.ListItem
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.EventListener
+import java.util.*
 import kotlin.collections.ArrayList
 
 object FirebaseService {
@@ -14,8 +15,9 @@ object FirebaseService {
     }
 
     fun loadCategories(completion: (MutableList<CategoryItem>) -> Unit) {
-        var collectionRef = FirebaseFirestore.getInstance().collection("/Users/${userID}/Categories")
-        var categories = mutableListOf<CategoryItem>()
+        val collectionRef =
+            FirebaseFirestore.getInstance().collection("/Users/${userID}/Categories")
+        val categories = mutableListOf<CategoryItem>()
         collectionRef.addSnapshotListener(object : EventListener<QuerySnapshot> {
             override fun onEvent(
                 querySnapshots: QuerySnapshot?,
@@ -23,7 +25,7 @@ object FirebaseService {
             ) {
                 categories.clear()
                 for (snapshot in querySnapshots!!) {
-                    var item = snapshot.toObject(CategoryItem::class.java)
+                    val item = snapshot.toObject(CategoryItem::class.java)
                     categories.add(item)
                 }
                 if (categories.isEmpty()) {
@@ -36,9 +38,9 @@ object FirebaseService {
     }
 
     fun createCategory(names: ArrayList<String>, completion: (Boolean) -> Unit) {
-        var collectionRef = FirebaseFirestore.getInstance().collection("/Users/${userID}/Categories")
-        var categoryItems = arrayListOf<CategoryItem>()
-        categoryItems = names.map {
+        val collectionRef =
+            FirebaseFirestore.getInstance().collection("/Users/${userID}/Categories")
+        var categoryItems= names.map {
             CategoryItem(it, "", 0, 0)
         } as ArrayList<CategoryItem>
 
@@ -59,13 +61,14 @@ object FirebaseService {
     }
 
     fun loadItems(categoryName: String, completion: (MutableList<ListItem>) -> Unit) {
-        val collectionItemsRef = FirebaseFirestore.getInstance().collection("/Users/${userID}/Categories/${categoryName}/items")
-        var items = mutableListOf<ListItem>()
+        val collectionItemsRef = FirebaseFirestore.getInstance()
+            .collection("/Users/${userID}/Categories/${categoryName}/items")
+        val items = mutableListOf<ListItem>()
 
-        collectionItemsRef.orderBy("date",Query.Direction.ASCENDING).get().addOnSuccessListener {
+        collectionItemsRef.orderBy("date", Query.Direction.ASCENDING).get().addOnSuccessListener {
             items.clear()
             for (snapshot in it) {
-                var item = snapshot.toObject(ListItem::class.java)
+                val item = snapshot.toObject(ListItem::class.java)
                 item.id = snapshot.id
                 items.add(item)
             }
@@ -76,13 +79,14 @@ object FirebaseService {
     }
 
     fun itemCompletionSwitch(categoryName: String, id: String, value: Boolean) {
-        val categoryRef = FirebaseFirestore.getInstance().document("/Users/${userID}/Categories/${categoryName}")
-        val itemRef = categoryRef.collection("items").document("${id}")
+        val categoryRef =
+            FirebaseFirestore.getInstance().document("/Users/${userID}/Categories/${categoryName}")
+        val itemRef = categoryRef.collection("items").document(id)
         if (value)
             categoryRef.update("done", FieldValue.increment(1))
         else
             categoryRef.update("done", FieldValue.increment(-1))
-        var map = hashMapOf<String, Boolean>()
+        val map = hashMapOf<String, Boolean>()
         map.put("checked", value)
         itemRef.set(map, SetOptions.merge())
 
@@ -90,7 +94,8 @@ object FirebaseService {
     }
 
     fun createItem(categoryName: String, item: ListItem, completion: (Boolean) -> Unit) {
-        val categoryDocumentRef = FirebaseFirestore.getInstance().document("Users/${userID}/Categories/${categoryName}")
+        val categoryDocumentRef =
+            FirebaseFirestore.getInstance().document("Users/${userID}/Categories/${categoryName}")
         categoryDocumentRef.update("tasks", FieldValue.increment(1))
         val itemCollectionRef = categoryDocumentRef.collection("items")
         itemCollectionRef.document().set(item).addOnSuccessListener {
@@ -99,27 +104,29 @@ object FirebaseService {
             completion(false)
         }
     }
-    fun updateItem(categoryName:String, item: ListItem, completion: (Boolean) -> Unit){
+
+    fun updateItem(categoryName: String, item: ListItem, completion: (Boolean) -> Unit) {
         val path = "/Users/${userID}/Categories/${categoryName}/items/${item.id}"
         val itemRef = FirebaseFirestore.getInstance().document(path)
-        val changes = hashMapOf<String,Any>()
+        val changes = hashMapOf<String, Any>()
         changes["checked"] = item.checked
         changes["subject"] = item.subject
         changes["date"] = item.date
         changes["text"] = item.text
         itemRef.update(changes).addOnSuccessListener {
             completion(true)
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             completion(false)
         }
     }
 
     fun deleteItem(id: String, categoryName: String, completion: (Boolean) -> Unit) {
-        val categoryRef = FirebaseFirestore.getInstance().document("Users/${userID}/Categories/${categoryName}")
-        val itemRef = categoryRef.collection("items").document("${id}")
+        val categoryRef =
+            FirebaseFirestore.getInstance().document("Users/${userID}/Categories/${categoryName}")
+        val itemRef = categoryRef.collection("items").document(id)
         itemRef.delete().addOnSuccessListener {
-            categoryRef.update("tasks",FieldValue.increment(-1))
-            categoryRef.update("done",FieldValue.increment(-1))
+            categoryRef.update("tasks", FieldValue.increment(-1))
+            categoryRef.update("done", FieldValue.increment(-1))
             completion(true)
         }.addOnFailureListener {
             completion(false)

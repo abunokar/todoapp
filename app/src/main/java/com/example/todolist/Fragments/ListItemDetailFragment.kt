@@ -22,7 +22,7 @@ import java.util.*
 
 class ListItemDetailFragment(itemID: String, categoryName: String) : Fragment() {
 
-    companion object{
+    companion object {
         val TAG = "ListItemDetailFragment"
     }
 
@@ -102,16 +102,17 @@ class ListItemDetailFragment(itemID: String, categoryName: String) : Fragment() 
         })
         return view
     }
+
     private fun createItem(): Boolean {
 
         val subject = et_subject.text.toString()
         val text = et_text.editableText.toString()
-        val itemDate =formate.parse(et_date.text.toString())
+        val itemDate = formate.parse(et_date.text.toString())
 
-        if(subject.isEmpty().or(text.isEmpty())){
+        if (subject.isEmpty().or(text.isEmpty())) {
             val builder = AlertDialog.Builder(context)
             builder.setMessage(getString(R.string.dialog_empty_fields_message))
-            builder.setNeutralButton(android.R.string.ok,null)
+            builder.setNeutralButton(android.R.string.ok, null)
             builder.show()
             return false
         }
@@ -119,22 +120,22 @@ class ListItemDetailFragment(itemID: String, categoryName: String) : Fragment() 
         if (itemID.isEmpty()) {
             val item = ListItem(itemID, checked, itemDate!!, subject, text)
             FirebaseService.createItem(
-                categoryName,item
+                categoryName, item
             ) {
                 if (it)
-                    Log.i(TAG,"Updating item was successful")
+                    Log.i(TAG, "Updating item was successful")
                 else
-                    Log.i(TAG,"Updating item was unsucessful")
+                    Log.i(TAG, "Updating item was unsucessful")
             }
         } else {
             FirebaseService.updateItem(
                 categoryName,
-                ListItem(itemID, checked, itemDate, subject, text)
+                ListItem(itemID, checked, itemDate!!, subject, text)
             ) {
                 if (it)
-                    Log.i(TAG,"Updating item was successful")
+                    Log.i(TAG, "Updating item was successful")
                 else
-                    Log.i(TAG,"Updating item was unsucessful")
+                    Log.i(TAG, "Updating item was unsucessful")
             }
         }
         return true
@@ -154,10 +155,10 @@ class ListItemDetailFragment(itemID: String, categoryName: String) : Fragment() 
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            if(createItem())
+            if (createItem())
                 activity?.supportFragmentManager?.popBackStack()
         }
-        builder.setNegativeButton(android.R.string.no) {dialog,Unit->
+        builder.setNegativeButton(android.R.string.no) { dialog, Unit ->
             dialog.dismiss()
         }
         builder.show()

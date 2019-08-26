@@ -9,13 +9,12 @@
             android:id="@+id/item_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="36dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp">
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="16dp">
 
         <ListView
                 android:id="@+id/item_list_fragment_list_view"
-                android:background="#a7a7a7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" />

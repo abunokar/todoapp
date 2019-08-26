@@ -32,7 +32,6 @@ class CategoryActivity : AppCompatActivity(),
         setContentView(R.layout.activity_category)
 
         setSupportActionBar(findViewById<Toolbar>(R.id.category_toolbar))
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         val actionBar = supportActionBar
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
@@ -67,18 +66,13 @@ class CategoryActivity : AppCompatActivity(),
     }
 
 
-    override fun onProgressChanged(progress: Pair<Long,Long>) {
+    override fun onProgressChanged(progress: Pair<Long, Long>) {
         done = progress.first
-        taskCount=progress.second
+        taskCount = progress.second
         showProgress()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.category_menu, menu)
-        return true
-    }
-
-    private fun showProgress(){
+    private fun showProgress() {
         var text = "${done.toString()}/${taskCount.toString()}"
         taskView.setText(text)
 
@@ -88,21 +82,21 @@ class CategoryActivity : AppCompatActivity(),
             progressBarView.progress = 100
         } else {
             progressBarView.progress = (done * 100 / taskCount).toInt()
-            text="${(done * 100 / taskCount)}%"
+            text = "${(done * 100 / taskCount)}%"
             percentageView.setText(text)
         }
     }
 
     override fun onDoneChanged(value: Int) {
-        done+=value
+        done += value
         showProgress()
     }
 
     override fun onStop() {
         super.onStop()
-        val intent =Intent()
-        intent.putExtra("done",done)
-        intent.putExtra("taskCount",taskCount)
-        setResult(Activity.RESULT_OK,intent)
+        val intent = Intent()
+        intent.putExtra("done", done)
+        intent.putExtra("taskCount", taskCount)
+        setResult(Activity.RESULT_OK, intent)
     }
 }

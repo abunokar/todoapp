@@ -10,6 +10,7 @@
     <string name="sign_in_google">Continue with Google</string>
     <string name="logo_title">ToDoApp</string>
     <string name="logo_subtitle">Let\'s make it organized!</string>
+    <string name="logo_content_description">Logo of this app</string>
     <!--/Sign In activity strings-->
 
     <!--Main activity strings-->
@@ -41,6 +42,8 @@
 
     <string name="main_activity_toolbar_title">ToDo</string>
     <string name="category_activity_toolbar_title">Category</string>
+
+    <string name="dialoog_create_new_activity_message">Create new category</string>
 
     <string name="dialog_create_item_title">Create item</string>
     <string name="dialog_create_item_message">Do you want to create new item?</string>

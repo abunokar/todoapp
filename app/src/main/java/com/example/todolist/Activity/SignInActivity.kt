@@ -40,7 +40,7 @@ class SignInActivity : AppCompatActivity() {
         googleSignInClient.signOut()
         fireBaseAuth = FirebaseAuth.getInstance()
 
-        (bt_sign_in.getChildAt(0)as TextView).text =resources.getString(R.string.sign_in_google)
+        (bt_sign_in.getChildAt(0) as TextView).text = resources.getString(R.string.sign_in_google)
         bt_sign_in.setOnClickListener {
             signIn()
         }
@@ -60,8 +60,9 @@ class SignInActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 fireBaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
-                Toast.makeText(this@SignInActivity, "Google sign in failed", Toast.LENGTH_SHORT).show()
-                Log.e(TAG,"Google sign in failed",e)
+                Toast.makeText(this@SignInActivity, "Google sign in failed", Toast.LENGTH_SHORT)
+                    .show()
+                Log.e(TAG, "Google sign in failed", e)
             }
         }
     }
@@ -72,7 +73,7 @@ class SignInActivity : AppCompatActivity() {
         fireBaseAuth.signInWithCredential(credetial)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    FirebaseService.userID=fireBaseAuth.currentUser!!.uid
+                    FirebaseService.userID = fireBaseAuth.currentUser!!.uid
                     finish()
                 } else {
                     Toast.makeText(this@SignInActivity, "Authentication failed", Toast.LENGTH_SHORT)

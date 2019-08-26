@@ -1,6 +1,6 @@
 package com.example.todolist.Activity
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,13 +13,13 @@ import com.example.todolist.R
 import com.example.todolist.Services.FirebaseService
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
-import layout.CategoryItemAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 import android.graphics.drawable.AnimationDrawable
 import android.widget.EditText
 import android.view.*
 import android.widget.Toast
+import com.example.todolist.Adapter.CategoryItemAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var id = item.itemId
+        val id = item.itemId
         when (id) {
             R.id.add_category -> {
                 showDialog()
@@ -107,10 +107,11 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    @SuppressLint("InflateParams")
     private fun showDialog() {
         val title = TextView(this)
-        title.text = "Create new category"
-        title.setPadding(0, 10, 0, 0);
+        title.text = getString(R.string.dialoog_create_new_activity_message)
+        title.setPadding(0, 10, 0, 0)
         title.textSize = 22F
         title.gravity = Gravity.CENTER
 
@@ -136,7 +137,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCouts(counts: Pair<Long, Long>) {
-        var taskText = findViewById<TextView>(R.id.tv_reminder_note)
+        val taskText = findViewById<TextView>(R.id.tv_reminder_note)
         when (counts.second - counts.first) {
             0L -> taskText.setText(resources.getString(R.string.reminder_note_any))
             in 1..3 -> taskText.setText(resources.getString(R.string.reminder_note_few))
